@@ -12,6 +12,24 @@ class JsonConvertBloc extends Bloc<JsonConvertEvent, JsonConvertState> {
   JsonConvertBloc() : super(InitialState()) {
     on<ConvertToModelEvent>(onConvertToModel);
     on<JsonParseEvent>(onJsonParseEvent);
+    on<ConvertToCsModelEvent>(onConvertToCsModelEvent);
+  }
+
+  onConvertToCsModelEvent(event, emit) {
+    emit(LoadingState());
+    var jsonConvertResult =
+        _jsonToModelUsecase.jsonToCsModel(event.inputJson, event.className);
+
+    if (jsonConvertResult.isLeft()) {
+      jsonConvertResult.fold((failure) {
+        emit(ConvertFailedState(failure.messsage));
+      }, (_) {});
+    }
+
+    jsonConvertResult.fold((_) {}, (converteStrVal) {
+      convertedStr = converteStrVal;
+      emit(ConvertSuccessState(converteStrVal));
+    });
   }
 
   onJsonParseEvent(event, emit) {
@@ -23,7 +41,7 @@ class JsonConvertBloc extends Bloc<JsonConvertEvent, JsonConvertState> {
         emit(ConvertFailedState(failure.messsage));
       }, (_) {});
     }
-    
+
     jsonConvertResult.fold((_) {}, (converteStrVal) {
       convertedStr = converteStrVal;
       emit(ConvertSuccessState(converteStrVal));

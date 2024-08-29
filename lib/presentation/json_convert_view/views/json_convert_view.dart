@@ -102,6 +102,18 @@ class _JsonConvertViewState extends State<JsonConvertView> {
                           },
                           child: const Text("Parse"),
                         ),
+                        ElevatedButton(
+                          style: largeButtonStyle,
+                          onPressed: () {
+                            context
+                                .read<JsonConvertBloc>()
+                                .add(ConvertToCsModelEvent(
+                                  jsonInputController.text,
+                                  classNameController.text,
+                                ));
+                          },
+                          child: const Text("To Cs Model"),
+                        ),
                       ],
                     ),
                   ),

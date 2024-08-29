@@ -11,6 +11,15 @@ class ConvertToModelEvent extends JsonConvertEvent {
   );
 }
 
+class ConvertToCsModelEvent extends JsonConvertEvent {
+  String inputJson;
+  String className;
+  ConvertToCsModelEvent(
+    this.inputJson,
+    this.className,
+  );
+}
+
 class JsonParseEvent extends JsonConvertEvent {
   String inputJson;
 
