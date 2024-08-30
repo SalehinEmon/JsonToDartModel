@@ -57,8 +57,12 @@ class JsonConvertBloc extends Bloc<JsonConvertEvent, JsonConvertState> {
     } else {
       className = event.className;
     }
-    var jsonConvertResult =
-        _jsonToModelUsecase.getModelFromJson(event.inputJson, className);
+    var jsonConvertResult = _jsonToModelUsecase.getDartModelFromJson(
+      event.inputJson,
+      className,
+      isNullable: event.isNullAble,
+      isNullsafe: event.isNullSafe,
+    );
     if (jsonConvertResult.isLeft()) {
       jsonConvertResult.fold((failure) {
         emit(ConvertFailedState(failure.messsage));

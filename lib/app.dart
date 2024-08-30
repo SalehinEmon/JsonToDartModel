@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:json_to_dart_model/config/app_theme.dart';
 import 'package:json_to_dart_model/presentation/json_convert_view/views/json_convert_view.dart';
 
 class AppStart extends StatefulWidget {
@@ -11,12 +12,12 @@ class AppStart extends StatefulWidget {
 class _AppStartState extends State<AppStart> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      // theme: AppTheme.themeData,
+    return MaterialApp(
+      theme: AppTheme.themeData,
       debugShowCheckedModeBanner: false,
       // onGenerateRoute: RouteGenerator.generateRoute,
 
-      home: JsonConvertView(),
+      home: const JsonConvertView(),
       //home: const PleaseWaitView(),
     );
   }

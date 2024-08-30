@@ -19,6 +19,7 @@ class AppTextFiled extends StatefulWidget {
   GlobalKey? key;
   AutovalidateMode? autovalidateMode;
   List<TextInputFormatter>? inputFormatters;
+  int? maxLine;
 
   AppTextFiled({
     super.key,
@@ -36,6 +37,7 @@ class AppTextFiled extends StatefulWidget {
     this.suffixIcon,
     this.autovalidateMode,
     this.inputFormatters,
+    this.maxLine,
   });
 
   @override
@@ -56,9 +58,9 @@ class _AppTextFiledState extends State<AppTextFiled> {
   Widget build(BuildContext context) {
     return Container(
       //height: 54,
-
       padding: const EdgeInsets.all(5),
       child: TextFormField(
+        maxLines: widget.maxLine,
         autovalidateMode: widget.autovalidateMode,
         inputFormatters: widget.inputFormatters,
         scrollPadding: widget.scrollPadding ?? const EdgeInsets.all(20.0),
