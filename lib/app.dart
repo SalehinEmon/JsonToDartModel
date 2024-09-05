@@ -13,6 +13,7 @@ class _AppStartState extends State<AppStart> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Json to model",
       theme: AppTheme.themeData,
       debugShowCheckedModeBanner: false,
       // onGenerateRoute: RouteGenerator.generateRoute,
